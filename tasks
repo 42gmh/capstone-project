@@ -1,0 +1,24 @@
+=== Backend ===
+DONE Setup DB
+DONE Init DB script
+DONE Sign-up - Post
+DONE Login - Post
+DONE Logout - Post
+DONE Fetch My List of Marios - Get
+DONE Save a Mario - New - Post
+DONE Save a Mario - Existing - Post
+DONE Validate Token
+Delete a Mario - Delete
+
+=== Frontend ===
+Sign up screen
+Login screen
+List of Marios
+  Delete
+  Open
+  New
+Mario Painter
+  Color Pickers for each articale of clothing
+  Name for mario picutre
+About
+

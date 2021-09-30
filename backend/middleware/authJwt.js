@@ -1,0 +1,21 @@
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js");
+
+verifyToken = (req, res, next) => {
+
+  let token = req.cookies.mariotoken;
+
+  if (!token) {
+    return res.status(401).json("You are not authenticated!");
+  }
+
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(403).json("Token is not valid!");
+    }
+    req.userId = decoded.id;
+    next();
+  });
+};
+
+module.exports = verifyToken;
