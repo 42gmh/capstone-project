@@ -11,8 +11,9 @@ DONE Validate Token
 Delete a Mario - Delete
 
 === Frontend ===
+DONE Login screen
+DONE Logout
 Sign up screen
-Login screen
 List of Marios
   Delete
   Open

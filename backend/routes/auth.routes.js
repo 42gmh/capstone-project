@@ -18,7 +18,7 @@ module.exports = function(app) {
     next();
   });
 
-  app.post("/api/signup", [verifySignUp.checkDuplicateEmail], (req, res) => {
+  app.post("/api/v1/signup", [verifySignUp.checkDuplicateEmail], (req, res) => {
 
     // verifySignUp passed -- so there is a valid user object in payload
     const newUser = req.body.user;
@@ -42,7 +42,7 @@ module.exports = function(app) {
     });  
   });
 
-  app.post("/api/signin", (req, res) => {
+  app.post("/api/v1/signin", (req, res) => {
 
     const {email, password} = req.body;
     if(null == email || null == password){
@@ -80,7 +80,7 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/signout", verifyToken,(req, res) => {
+  app.post("/api/v1/signout", verifyToken,(req, res) => {
     res.cookie('mariotoken', "", { httpOnly: true, secure: false, maxAge: 0 });
     res.status(200).json("ok");
   });

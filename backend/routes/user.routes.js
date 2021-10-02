@@ -13,7 +13,7 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/getmarios", verifyToken, (req, res) => {
+  app.get("/api/v1/getmarios", verifyToken, (req, res) => {
 
     Mario.findAll({
       where: {
@@ -27,7 +27,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/savemario", verifyToken, (req, res) => {
+  app.post("/api/v1/savemario", verifyToken, (req, res) => {
 
     const aMario = req.body.mario;
     if(null === aMario.id)
@@ -41,7 +41,7 @@ module.exports = function(app) {
     }
   });
 
-  app.delete("/api/deletemario", verifyToken, (req, res) => {
+  app.delete("/api/v1/deletemario", verifyToken, (req, res) => {
     res.status(400).json("implement me!!!");
 
 

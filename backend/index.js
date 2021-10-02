@@ -2,6 +2,10 @@
 
 require('dotenv').config();
 
+const verifyEnv = require("./middleware/verifyEnv");
+
+verifyEnv();
+
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
