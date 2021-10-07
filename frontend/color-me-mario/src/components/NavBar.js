@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { MarioContextConsumer } from './MarioContext'
 import { withRouter } from 'react-router';
+import thumb from '../thumb.png';
+import { Link } from "react-router-dom";
 
 class NavBar extends Component {
     render() {
@@ -11,13 +13,26 @@ class NavBar extends Component {
             {
                 (value) => {
                     return (
-                        <div className="bg-info">
-                            <h1 onClick={() => this.props.history.push('/')}>Nav Bar</h1>
-                            {"true" === value.isLoggedIn ? <h3 className="btn" onClick={(e) => value.handleLogout(e)}>Logout</h3> :
-                            <h3 className="btn" onClick={() => this.props.history.push('/login')}>Login</h3>
-                            }
+                        <nav className="navbar px-3">
+                        <Link to="/">
+                            <img src={thumb} alt="Mario" className="navbar-brand img-fluid"/>
+                        </Link>
 
-                    </div>
+                        <Link to="/" className="link-light text-decoration-none">
+                            <h1 className="eightbitfont">Color Me Mario!</h1> 
+                        </Link>
+
+                        <div>
+                            <Link to="/about" className="link-light text-decoration-none">
+                                <h3 className="eightbitfont text-light" >About</h3>
+                            </Link>
+                            {
+                                "true" === value.isLoggedIn ? 
+                                    <h6 className="eightbitfont text-light" onClick={(e) => value.handleLogout(e)}>Logout</h6> :
+                                    <h6 className="eightbitfont text-light" onClick={() => this.props.history.push('/login')}>Login</h6>
+                            }
+                        </div>
+                    </nav>
                 )
                 }
             }

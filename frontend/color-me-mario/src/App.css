@@ -13,6 +13,21 @@
   }
 }
 
+.eightbitfont{
+  font-family: 'Press Start 2P', cursive;
+}
+
+.edit-screen{
+  height: 1rem;
+  /* height: 1rem !important;
+  width: 1rem !important; */
+}
+
+.thumbnail{
+  /* height: 1rem; */
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

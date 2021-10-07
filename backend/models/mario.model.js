@@ -29,6 +29,22 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      eyes: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      mustache: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      hair: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      skin: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
     });
   
     return Mario;

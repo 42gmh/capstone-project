@@ -10,7 +10,110 @@ export default class MarioContextProvider extends Component {
         isLoggedIn: window.localStorage.getItem("marioLoggedIn"),
         errMsg: null,
         signUpStatus: null,
-        marios: []
+        marios: [],
+        selectedMario: null,
+        saveStatus: null
+    }
+
+    handleMarioSelection = (aMario) => {
+
+        console.log("Selected Mario!!!:" + JSON.stringify(aMario));
+        this.setState(() => {
+            return {
+                ...this.state,
+                selectedMario: aMario
+            };
+        });
+    }
+
+    handleMarioSave = () => {
+
+        const mario = {
+            mario: this.state.selectedMario
+        }
+
+        fetch(serverURL + "/savemario", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(mario)
+        }).then(httpResponse => {
+            if(httpResponse.ok)
+            {
+                httpResponse.json().then((payload) => {
+                    const savedMario = this.state.selectedMario;
+                    savedMario.id = payload.id;
+                    this.setState(() => {
+                        return {
+                            ...this.state,
+                            selectedMario: savedMario,
+                            savedStatus : {
+                                success: true,
+                                msg: null
+                            }
+                        };
+                    });    
+                })
+            }
+            else {
+                httpResponse.json().then((payload) => {
+                    this.setState(() => {
+                        return {
+                            ...this.state,
+                            savedStatus: {
+                                success: false,
+                                msg: payload
+                            }
+                        };
+                    });
+                })
+            }
+        });
+
+    }
+
+    handleMarioDelete = () => {
+        fetch(serverURL + "/deletemario", {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                marioId: this.state.selectedMario.id
+            })
+        }).then(httpResponse => {
+            if(httpResponse.ok) {
+                this.setState(() => {
+                    return {
+                        ...this.state,
+                        selectedMario: null
+                    };
+                });
+            }
+            else {
+                httpResponse.json().then((payload) => {
+                    this.setState(() => {
+                        return {
+                            ...this.state,
+                            savedStatus: {
+                                success: false,
+                                msg: payload
+                            }
+                        };
+                    });
+                })
+            }
+        });
+    }
+
+    handleMarioChange = (field, color) => {
+
+        const updatedMario = this.state.selectedMario;
+        updatedMario[field] = color;
+        this.setState(() => {
+            return {
+                ...this.state,
+                selectedMario: updatedMario,
+                savedStatus: null
+            };
+        }, () => console.log(this.state));
     }
 
     handleSignup = (e) => {
@@ -86,7 +189,6 @@ export default class MarioContextProvider extends Component {
                 });
             }
             else {
-
                 httpResponse.json().then((payload) => {
                     window.localStorage.setItem("marioLoggedIn", "false");
                     this.setState(() => {
@@ -132,6 +234,17 @@ export default class MarioContextProvider extends Component {
         });
     }
 
+    clearSaveStatus = () => {
+
+        console.log("Clearing save status...")
+        this.setState(() => {
+            return {
+                ...this.state,
+                savedStatus: null
+            };
+        });
+    }
+
     loadMarios = () => {
         fetch(serverURL + "/getMarios")
         .then(httpResponse => {
@@ -146,7 +259,19 @@ export default class MarioContextProvider extends Component {
                     });
                 })
             }
+            else if(401 === httpResponse.status) {
+                window.localStorage.setItem("marioLoggedIn", "false");
+
+                this.setState(() => {
+                    return {
+                        ...this.state,
+                        isLoggedIn: "false",
+                    };
+                });
+            
+            }
             else {
+                console.log(httpResponse);
                 httpResponse.json().then((payload) => {
                     console.log("There was an error fetching Marios:", payload);
                 })
@@ -162,7 +287,12 @@ export default class MarioContextProvider extends Component {
                 handleLogin : this.handleLogin,
                 handleLogout : this.handleLogout,
                 handleSignup : this.handleSignup,
-                loadMarios : this.loadMarios
+                handleMarioSelection: this.handleMarioSelection,
+                handleMarioChange: this.handleMarioChange,
+                handleMarioSave: this.handleMarioSave,
+                handleMarioDelete: this.handleMarioDelete,
+                loadMarios : this.loadMarios,
+                clearSaveStatus : this.clearSaveStatus,
               }}>
     
                 {this.props.children}

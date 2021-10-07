@@ -42,8 +42,32 @@ module.exports = function(app) {
   });
 
   app.delete("/api/v1/deletemario", verifyToken, (req, res) => {
-    res.status(400).json("implement me!!!");
 
+    console.log("Deleting:", req.body.marioId);
+
+    Mario.findAll({
+      where: {
+        userId: req.userId,
+        id: req.body.marioId
+      }
+    }).then((marios) => {
+  
+      console.log("MMMMMMM:", marios);
+      if (1 === marios.length) {
+        var theMario = marios[0];
+  
+        theMario.destroy()
+                .then((count) => {
+                  console.log("Deleted instances:", count);
+                  res.status(200).json("ok")
+                });
+      }
+      else { return res.status(400).json("No such Mario"); }
+    }).catch(err => {
+      console.log("Error updating Mario:", err);
+      return res.status(500).send({ message: err.message });
+    });
+  
 
   });
 };
@@ -65,6 +89,10 @@ function createNewMario(req, res, aMario) {
         pants: aMario.pants,
         shirt: aMario.shirt,
         background: aMario.background,
+        eyes: aMario.eyes,
+        mustache: aMario.mustache,
+        hair: aMario.hair,
+        skin: aMario.skin,
         userId: req.userId
       }).then((newMario) => {
         return res.status(200).json(newMario);
@@ -95,6 +123,11 @@ function updateAMario(req, res, aMario) {
       theMario.cap = aMario.cap;
       theMario.pants = aMario.pants;
       theMario.shirt = aMario.shirt;
+      theMario.eyes = aMario.eyes;
+      theMario.mustache = aMario.mustache;
+      theMario.hair = aMario.hair;
+      theMario.skin = aMario.skin;
+
       theMario.background = aMario.background;
       theMario.save()
               .then((updatedMario) => res.status(200).json(updatedMario));
