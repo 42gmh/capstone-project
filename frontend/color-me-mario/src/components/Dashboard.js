@@ -29,23 +29,11 @@ export default class Dashboard extends Component {
                 (value) => {
 
                     return (
-
-                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-                            <div key = "-1" className="col">
-                                <Link to="/colormario" className="link-dark text-decoration-none">
-                                    <div className="card m-2 bg-secondary" style={{ width: "20rem" }} onClick={() => value.handleMarioSelection({
-                                            ...defaultMarioPalette,
-                                            id: null,
-                                            title: null})
-                                    }>
-                                        <div className="card-body border border-dark">
-                                            <Mario palette={blankMario} isThumb="true"/>
-                                            <h5 className="text-center eightbitfont m-3 mb-0">Create New Mario</h5>
-                                        </div>
-                                    </div>
-                                </Link>
-                             </div>
-                            {
+                    <>
+                        <h1 className="text-center eightbitfont text-light p-3">Photo Album</h1>
+                        <div className="container">
+                            <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-2">
+                                {
                                 value.marios.map((aMario) => {
                                     console.log(aMario);
                                     return (
@@ -60,8 +48,24 @@ export default class Dashboard extends Component {
                                             </div>
                                         </Link>
                                     )})
-                            }
+                                }
+                                <div key = "-1" className="col">
+                                    <Link to="/colormario" className="link-dark text-decoration-none">
+                                        <div className="card m-2 bg-secondary" style={{ width: "20rem" }} onClick={() => value.handleMarioSelection({
+                                                ...defaultMarioPalette,
+                                                id: null,
+                                                title: null})
+                                        }>
+                                            <div className="card-body border border-dark">
+                                                <Mario palette={blankMario} isThumb="true"/>
+                                                <h5 className="text-center eightbitfont m-3 mb-0">New Mario</h5>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
+                    </>
                     )
                 }
             }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { MarioContext, MarioContextConsumer } from './MarioContext'
 import { Link } from "react-router-dom";
+import Reason from './Reason';
 
 
 export default class Login extends Component {
@@ -27,25 +28,28 @@ export default class Login extends Component {
                 (value) => {
                     return (
                     <div>
+                        <Reason/>
+                        <div className="container py-0 my-0">
                         <form onSubmit={(event) => this.handleLogin(event, value)}>
-                        <div className="form-group">
-                                <label htmlFor="email">Email address</label>
+                            <div className="form-group">
+                                <label htmlFor="email" className="text-light">Email address</label>
                                 <input type="email" id="email" name="email" className="form-control" required/>
                                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div className="form-group my-3">
-                                <label htmlFor="password">Password</label>
+                                <label htmlFor="password"className="text-light" >Password</label>
                                 <input type="password" id="password" name="password" className="form-control" required/>
                             </div>
-                            <input type="submit" className="my-3 btn btn-info" value="Login"/>
+                            <input type="submit" className="my-3 btn btn-secondary" value="Login"/>
                         </form>
-                        <h3>OR</h3>
+                        <p className="text-light">OR</p>
                         <Link to="/singup">
-                            <button className="btn btn-info">
+                            <button className="btn btn-secondary">
                                 Sign up as a new user
                             </button>
                         </Link>                        
-                        {null == value.errMsg? null : <h5 className="py-1 bg-danger text-white text-center">Error logging in. Please try again.</h5>}
+                        </div>
+                        {null == value.errMsg? null : <h5 className="py-1 my-5 bg-danger text-white text-center">Error logging in. Please try again.</h5>}
                     </div>
                 )}
             }

@@ -15,12 +15,13 @@ export default class ColorPicker extends Component {
                         <div>
                             <input 
                                 type="color" 
+                                className="form-control form-control-color"
                                 id={field} 
                                 name={field} 
                                 value={value.selectedMario[field]} 
                                 onChange={(e) => value.handleMarioChange([field], e.target.value)}
                             />
-                            <label htmlFor={field}>{label}</label>
+                            <label className="form-label" htmlFor={field}>{label}</label>
                         </div>
                     )
                 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ColorPicker from './ColorPicker';
+import Dashboard from './Dashboard';
 import { Mario } from './Mario';
 import { MarioContext, MarioContextConsumer } from './MarioContext';
 
@@ -24,44 +25,75 @@ export default class ColorMario extends Component {
             <MarioContextConsumer> 
             {
                 (value) => {
-                    return (
-                    <>
-                        <div className="container">
+                    if(null === value.selectedMario) // handle refresh
+                        return <Dashboard/>
+                    else
+                        return (
+                        <>
                             <Mario palette={value.selectedMario} isThumb="false"/>
-                        </div>
 
-                        <form onSubmit={(event) => value.handleMarioEdit(event)}>
+                            <form className="text-light" onSubmit={(event) => value.handleMarioEdit(event)}>
 
-                        <div>
-                            <input type="text" id="title" name="title" required
-                            value={value.selectedMario.title} 
-                                onChange={(e) => value.handleMarioChange("title", e.target.value)}
-                            />
-                            <label htmlFor="title">Title</label>
-
-                        </div>
-                        <ColorPicker label="Skin" field="skin"/>
-                        <ColorPicker label="Mustache" field="mustache"/>
-                        <ColorPicker label="Hair" field="hair"/>
-                        <ColorPicker label="Eyes" field="eyes"/>
-                        <ColorPicker label="Background" field="background"/>
-                        <ColorPicker label="Shirt" field="shirt"/>
-                        <ColorPicker label="Pants" field="pants"/>
-                        <ColorPicker label="Cap" field="cap"/>
-                        <ColorPicker label="Boots" field="boots"/>
-                        <ColorPicker label="Buttons" field="button"/>
-                        </form>
-                        <button className="my-3 btn btn-info" onClick={() => value.handleMarioSave()}>Save</button>
-                        {null === value.selectedMario.id ? null : <button className="my-3 btn btn-info" onClick={() => this.handleDelete(value)}>Delete</button>}
-
-                        { 
-                            null == value.savedStatus ? 
-                                null :value.savedStatus.success ? 
-                                    <h5 className="bg-info text-white text-center">Your Marios was successfully saved!</h5> : 
-                                    <h5 className="bg-danger text-white text-center">{"Please try again: " + value.savedStatus.msg}</h5>
-                        }
-                    </>
-                    )
+                            <div className="container">
+                                <div className="row">
+                                <div className="col">
+                                <div>
+                                    <input className="form-control my-3" type="text" id="title" name="title" required
+                                    value={value.selectedMario.title} 
+                                        onChange={(e) => value.handleMarioChange("title", e.target.value)}
+                                    placeholder="Portait Title"/>
+                                </div>
+                                </div></div>
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="col">
+                                        <ColorPicker label="Skin" field="skin"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Mustache" field="mustache"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Hair" field="hair"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Eyes" field="eyes"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Background" field="background"/>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col">
+                                        <ColorPicker label="Shirt" field="shirt"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Pants" field="pants"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Cap" field="cap"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Boots" field="boots"/>
+                                        </div>
+                                        <div className="col">
+                                        <ColorPicker label="Buttons" field="button"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                            <div className="container text-center">
+                            <button className="my-3 btn btn-secondary" onClick={() => value.handleMarioSave()}>Save</button>
+                            {null === value.selectedMario.id ? null : <button className="my-3 mx-3 btn btn-secondary" onClick={() => this.handleDelete(value)}>Delete</button>}
+                            </div>
+                            { 
+                                null == value.savedStatus ? 
+                                    null :value.savedStatus.success ? 
+                                        <h5 className="bg-info text-white text-center">Your Marios was successfully saved!</h5> : 
+                                        <h5 className="bg-danger text-white text-center">{"Please try again: " + value.savedStatus.msg}</h5>
+                            }
+                        </>
+                        )
                 }
             }
             </MarioContextConsumer>
