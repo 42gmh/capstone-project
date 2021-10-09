@@ -18,6 +18,14 @@ export default class Signup extends Component {
                         </p>
                     </div>
 
+                    { 
+                            null == value.signUpStatus ? 
+                                null :value.signUpStatus.success ? 
+                                    <h5 className="bg-secondary text-white text-center p-1">Success! Please proceed to <Link className="link-light text-decoration-none fw-bold" to="/login">login</Link>.</h5> : 
+                                    <h5 className="bg-danger text-white text-center">{"Please try again. Error with signup: " + value.signUpStatus.msg}</h5>
+                        }
+
+
                     <div className="container py-3 my-0">
                         <form onSubmit={(event) => value.handleSignup(event)}>
                             <div className="form-group py-3">
@@ -36,13 +44,6 @@ export default class Signup extends Component {
                             <input type="submit" className="my-3 btn btn-secondary" value="Register"/>
                         </form>
                         </div>
-
-                        { 
-                            null == value.signUpStatus ? 
-                                null :value.signUpStatus.success ? 
-                                    <h5 className="bg-secondary text-white text-center p-1">Success! Please proceed to <Link className="link-light text-decoration-none fw-bold" to="/login">login</Link>.</h5> : 
-                                    <h5 className="bg-danger text-white text-center">{"Please try again. Error with signup: " + value.signUpStatus.msg}</h5>
-                        }
                     </>
                 )}
             }

@@ -27,9 +27,8 @@ class NavBar extends Component {
                                 <h3 className="eightbitfont text-light" >About</h3>
                             </Link>
                             {
-                                "true" === value.isLoggedIn ? 
-                                    <h6 className="eightbitfont text-light" onClick={(e) => value.handleLogout(e)}>Logout</h6> :
-                                    <h6 className="eightbitfont text-light" onClick={() => this.props.history.push('/login')}>Login</h6>
+                                "true" !== value.isLoggedIn ? null :
+                                    <h6 className="eightbitfont text-light" onClick={(e) => value.handleLogout(e)}>Logout</h6>
                             }
                         </div>
                     </nav>

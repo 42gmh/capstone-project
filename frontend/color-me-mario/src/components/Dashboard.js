@@ -75,25 +75,3 @@ export default class Dashboard extends Component {
 }
 
 Dashboard.contextType = MarioContext;
-
-{/* <table className="table table-bordered table-sm table-responsive">
-<thead>
-    <tr className = "text-center align-middle">
-        <th scope="col">Mario</th>
-        <th scope="col text-center">Title</th>
-        <th scope="col text-center">Delete</th>
-        <th scope="col" hidden={true}>Id</th>
-    </tr>
-</thead>
-<tbody>
-{value.marios.map((aMario) => {
-    return (
-    <tr className="text-center align-middle">
-        <td colSpan="1"><Mario /></td>
-        <td >{aMario.title}</td>
-        <td>&#128465;</td>
-        <td hidden={true}>aMario.id</td>
-    </tr>);
-})}
-</tbody>
-</table> */}

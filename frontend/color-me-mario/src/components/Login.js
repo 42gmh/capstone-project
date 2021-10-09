@@ -28,7 +28,8 @@ export default class Login extends Component {
                 (value) => {
                     return (
                     <div>
-                        <Reason/>
+                        {null == value.errMsg? null : <h5 className="py-1 my-5 bg-danger text-white text-center">Error logging in. Please try again.</h5>}
+
                         <div className="container py-0 my-0">
                         <form onSubmit={(event) => this.handleLogin(event, value)}>
                             <div className="form-group">
@@ -49,7 +50,7 @@ export default class Login extends Component {
                             </button>
                         </Link>                        
                         </div>
-                        {null == value.errMsg? null : <h5 className="py-1 my-5 bg-danger text-white text-center">Error logging in. Please try again.</h5>}
+                        <Reason/>
                     </div>
                 )}
             }
