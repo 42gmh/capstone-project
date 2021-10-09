@@ -8,18 +8,18 @@ DONE Fetch My List of Marios - Get
 DONE Save a Mario - New - Post
 DONE Save a Mario - Existing - Post
 DONE Validate Token
-Delete a Mario - Delete
+DONE Delete a Mario - Delete
 
 === Frontend ===
 DONE Login screen
 DONE Logout
-Sign up screen
-List of Marios
-  Delete
-  Open
-  New
-Mario Painter
-  Color Pickers for each articale of clothing
-  Name for mario picutre
-About
+DONE Sign up screen
+DONE List of Marios
+DONE   Delete
+DONE   Open
+DONE   New
+DONE Mario Painter
+DONE   Color Pickers for each articale of clothing
+DONE   Name for mario picutre
+DONE About
 
