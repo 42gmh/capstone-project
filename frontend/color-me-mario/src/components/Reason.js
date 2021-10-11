@@ -12,7 +12,7 @@ const Reason = () => {
             </p>
             <p>
                 For my capstone project, I have decided to re-visit 8-bit Mario one last time -- this 
-                time combining all the skills we leared to build an application that allows users to 
+                time combining all the skills we learned to build an application that allows users to 
                 create custom colored 8-bit Marios and store them in an album.
             </p>
         </div>

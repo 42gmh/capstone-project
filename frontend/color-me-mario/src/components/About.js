@@ -18,7 +18,7 @@ export default class About extends Component {
                     <AboutListItem name="HTML/CSS/Javascript" url={null}
                                    summary="This is the mirepoix of web development and underpins everything else."/>
                     <AboutListItem name="Express" url="http://expressjs.com/" 
-                                   summary="The backend is implemented asan Express server. This exposes the web endpoints used by the GUI to CRUD data."/>
+                                   summary="The backend is implemented as an Express server. This exposes the web endpoints used by the GUI to CRUD data."/>
                     <AboutListItem name="Node" url="https://nodejs.org/en/"  
                                    summary="This is the backend Javscript VM used to run the Express server"/>
                     <AboutListItem name="bcrypt" url="https://www.npmjs.com/package/bcrypt"  
@@ -40,7 +40,7 @@ export default class About extends Component {
                     <AboutListItem name="Nginx" url="https://www.nginx.com/"
                                    summary="The app is served up by Nginx."/>
                     <AboutListItem name="PM2" url="https://pm2.keymetrics.io/"
-                                   summary="The backend process lifecyle is managed via PM2."/>
+                                   summary="The backend process lifecycle is managed via PM2."/>
                     <AboutListItem name="certbot" url="https://certbot.eff.org/"
                                    summary="The EFF's cerbot is providing the HTTPS certificate management."/>
                 </ul>
